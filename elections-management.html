@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="elections_mgmt.title">Election Management — SecureVote Prototype</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+  <div class="educational-banner">
+    <span class="badge" data-i18n="home.banner_badge">EDUCATIONAL DEMO</span>
+    <span data-i18n="brand.disclaimer">Educational election simulation prototype using fictional data. Strictly not for real government elections.</span>
+  </div>
+
+  <header class="app-header"></header>
+
+  <div class="dashboard-layout">
+    <aside class="dashboard-sidebar" id="admin-sidebar"></aside>
+
+    <main class="dashboard-main">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <h1 data-i18n="elections_mgmt.title">Election Management</h1>
+          <p data-i18n="elections_mgmt.subtitle" style="margin-bottom: 0;">
+            Create new simulated elections, manage schedules, and control state transitions.
+          </p>
+        </div>
+
+        <button type="button" class="btn btn-primary" onclick="openCreateElectionModal()">
+          ➕ <span data-i18n="elections_mgmt.create_btn">Create New Election</span>
+        </button>
+      </div>
+
+      <!-- Elections Table -->
+      <div class="card">
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Status</th>
+                <th>Candidates</th>
+                <th>Schedule</th>
+                <th>Ballots Cast</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="elections-table-body">
+              <tr>
+                <td colspan="7" style="text-align: center; padding: 2rem;">Loading elections...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Create Election Modal -->
+  <div id="election-modal" class="modal-overlay">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title" id="election-modal-title">Create Simulation Election</h3>
+        <button type="button" class="modal-close" onclick="closeElectionModal()">&times;</button>
+      </div>
+      <form id="election-form">
+        <div class="modal-body">
+          <input type="hidden" id="modal-election-id">
+
+          <div class="form-group">
+            <label class="form-label" for="modal-election-title-input" data-i18n="elections_mgmt.title_label">Election Title</label>
+            <input type="text" id="modal-election-title-input" class="form-control" required placeholder="e.g. 2027 City Advisory Board Simulation">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="modal-election-desc-input" data-i18n="elections_mgmt.desc_label">Description</label>
+            <textarea id="modal-election-desc-input" class="form-control" rows="3" required placeholder="Brief description of democratic purpose and simulated constituency..."></textarea>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label" for="modal-election-start-input" data-i18n="elections_mgmt.start_label">Start Date & Time</label>
+              <input type="datetime-local" id="modal-election-start-input" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="modal-election-end-input" data-i18n="elections_mgmt.end_label">End Date & Time</label>
+              <input type="datetime-local" id="modal-election-end-input" class="form-control" required>
+            </div>
+          </div>
+
+          <div class="form-group" id="modal-election-status-group">
+            <label class="form-label" for="modal-election-status-input" data-i18n="elections_mgmt.status_label">Initial Status</label>
+            <select id="modal-election-status-input" class="form-control">
+              <option value="DRAFT">DRAFT</option>
+              <option value="SCHEDULED">SCHEDULED</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="closeElectionModal()" data-i18n="common.cancel">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="modal-election-save-btn" data-i18n="common.save">Save Election</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <footer class="app-footer"></footer>
+
+  <script src="/js/i18n.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/common.js"></script>
+  <script src="/js/elections.js"></script>
+</body>
+</html>

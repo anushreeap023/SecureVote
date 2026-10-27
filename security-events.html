@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="security.title">Security Events & Incident Oversight — SecureVote Prototype</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+  <div class="educational-banner">
+    <span class="badge" data-i18n="home.banner_badge">EDUCATIONAL DEMO</span>
+    <span data-i18n="brand.disclaimer">Educational election simulation prototype using fictional data. Strictly not for real government elections.</span>
+  </div>
+
+  <header class="app-header"></header>
+
+  <div class="dashboard-layout">
+    <aside class="dashboard-sidebar" id="admin-sidebar"></aside>
+
+    <main class="dashboard-main">
+      <div style="margin-bottom: 2rem;">
+        <h1 data-i18n="security.title">Security Events & Threat Monitoring</h1>
+        <p data-i18n="security.subtitle" style="margin-bottom: 0;">
+          Real-time surveillance of authentication anomalies, rate-limiting violations, and tampering attempts.
+        </p>
+      </div>
+
+      <!-- Filter Tabs Bar -->
+      <div class="card" style="margin-bottom: 1.5rem; padding: 1rem 1.25rem;">
+        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+          <button type="button" class="btn btn-primary btn-sm" id="sec-tab-all" onclick="filterSecurity('all')">
+            All Alerts (<span id="sec-count-total">0</span>)
+          </button>
+          <button type="button" class="btn btn-outline btn-sm" id="sec-tab-OPEN" onclick="filterSecurity('OPEN')">
+            ⚠️ Open Incidents (<span id="sec-count-open">0</span>)
+          </button>
+          <button type="button" class="btn btn-outline btn-sm" id="sec-tab-INVESTIGATING" onclick="filterSecurity('INVESTIGATING')">
+            🔍 Under Investigation (<span id="sec-count-investigating">0</span>)
+          </button>
+          <button type="button" class="btn btn-outline btn-sm" id="sec-tab-RESOLVED" onclick="filterSecurity('RESOLVED')">
+            ✓ Resolved (<span id="sec-count-resolved">0</span>)
+          </button>
+        </div>
+      </div>
+
+      <!-- Events Table -->
+      <div class="card">
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Incident ID</th>
+                <th>Severity</th>
+                <th>Incident Category</th>
+                <th>Safe Description</th>
+                <th>Associated User</th>
+                <th>Logged At</th>
+                <th>Resolution</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="security-table-body">
+              <tr>
+                <td colspan="8" style="text-align: center; padding: 2rem;">Loading security alerts...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <footer class="app-footer"></footer>
+
+  <script src="/js/i18n.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/common.js"></script>
+  <script src="/js/security-events.js"></script>
+</body>
+</html>

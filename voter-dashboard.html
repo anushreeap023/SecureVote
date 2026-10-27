@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="voter.dashboard_title">Voter Portal — SecureVote</title>
+  <meta name="description" content="Voter dashboard for participating in active democratic election simulations.">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+  <!-- Disclaimer -->
+  <div class="educational-banner">
+    <span class="badge" data-i18n="home.banner_badge">EDUCATIONAL DEMO</span>
+    <span data-i18n="brand.disclaimer">Educational election simulation prototype using fictional data. Strictly not for real government elections.</span>
+  </div>
+
+  <header class="app-header"></header>
+
+  <main class="main-content">
+    <div class="app-container">
+      <!-- Voter Header Card -->
+      <div class="card" style="margin-bottom: 2rem; background: linear-gradient(135deg, #FFFFFF 0%, #EAF7FF 100%);">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <span style="font-size: 0.85rem; font-weight: 600; color: var(--color-deep-blue); text-transform: uppercase;">
+              Voter Democratic Portal
+            </span>
+            <h1 id="voter-name-heading" style="font-size: 1.85rem; margin-top: 0.2rem; margin-bottom: 0.4rem;">
+              Welcome, Voter
+            </h1>
+            <div style="display: flex; gap: 1rem; align-items: center; font-size: 0.88rem; color: var(--color-navy-muted);">
+              <span>Demo Voter ID: <strong id="voter-id-display" style="color: var(--color-navy-text);">DEMO-VOTER-XXX</strong></span>
+              <span>•</span>
+              <span id="voter-approval-badge-container"></span>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 0.75rem;">
+            <a href="/voting-status.html" class="btn btn-outline" data-i18n="nav.voting_status">Voting Status</a>
+            <a href="/election-info.html" class="btn btn-secondary" data-i18n="nav.elections">Browse All</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Voting Integrity Rules Banner -->
+      <div class="card" style="margin-bottom: 2.5rem; border-left: 4px solid var(--color-primary-blue); background: #FFFFFF;">
+        <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--color-deep-blue);" data-i18n="voter.voting_instructions_title">
+          Voting Guidelines & Integrity Rules
+        </h3>
+        <ul style="padding-left: 1.25rem; font-size: 0.9rem; color: var(--color-navy-muted); display: flex; flex-direction: column; gap: 0.4rem;">
+          <li data-i18n="voter.rule_1">You may only vote once per election. Duplicate voting is permanently blocked by database constraints.</li>
+          <li data-i18n="voter.rule_2">Your vote is recorded anonymously; your candidate choice is decoupled from your voter identity.</li>
+          <li data-i18n="voter.rule_3">Review candidate manifestos thoroughly before final confirmation. Votes cannot be modified or recalled.</li>
+        </ul>
+      </div>
+
+      <!-- Available Elections -->
+      <div style="margin-bottom: 1.5rem;">
+        <h2 data-i18n="voter.available_elections">Active & Upcoming Elections</h2>
+        <p data-i18n="voter.available_elections_desc">Review candidate lists, check your eligibility, and submit your verified ballot.</p>
+      </div>
+
+      <div id="voter-elections-grid" class="candidate-grid">
+        <!-- Rendered by voter-dashboard.js -->
+        <div class="card skeleton" style="height: 220px;"></div>
+        <div class="card skeleton" style="height: 220px;"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="app-footer"></footer>
+
+  <script src="/js/i18n.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/common.js"></script>
+  <script src="/js/voter-dashboard.js"></script>
+</body>
+</html>

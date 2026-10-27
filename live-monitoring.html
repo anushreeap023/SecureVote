@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="monitoring.title">Live Election Monitoring — SecureVote</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+  <div class="educational-banner">
+    <span class="badge" data-i18n="home.banner_badge">EDUCATIONAL DEMO</span>
+    <span data-i18n="brand.disclaimer">Educational election simulation prototype using fictional data. Strictly not for real government elections.</span>
+  </div>
+
+  <header class="app-header"></header>
+
+  <div class="dashboard-layout">
+    <aside class="dashboard-sidebar" id="admin-sidebar"></aside>
+
+    <main class="dashboard-main">
+      <!-- Admin Only Alert Banner -->
+      <div style="background: linear-gradient(90deg, #173B57 0%, #2477B8 100%); color: #FFFFFF; padding: 0.85rem 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
+        <div style="display: flex; align-items: center; gap: 0.6rem;">
+          <span style="font-size: 1.3rem;">📡</span>
+          <strong style="letter-spacing: 0.5px;" data-i18n="monitoring.disclaimer_badge">
+            ADMIN-ONLY LIVE MONITORING — EDUCATIONAL DEMO
+          </strong>
+        </div>
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <span class="badge badge-published" id="auto-refresh-indicator" data-i18n="monitoring.auto_refresh_badge">
+            Auto-refreshing every 10s
+          </span>
+          <button type="button" class="btn btn-sm btn-secondary" onclick="manualRefreshData()" data-i18n="monitoring.manual_refresh">
+            Refresh Data
+          </button>
+        </div>
+      </div>
+
+      <!-- Election Picker & Policy Controls -->
+      <div class="card" style="margin-bottom: 2rem; padding: 1.5rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+          <div style="flex: 1; min-width: 280px;">
+            <label for="monitoring-election-picker" style="font-weight: 700; color: var(--color-navy-text); display: block; margin-bottom: 0.4rem;" data-i18n="monitoring.select_election">
+              Select Active Election:
+            </label>
+            <select id="monitoring-election-picker" class="form-control" style="max-width: 480px;">
+              <option value="">Loading elections...</option>
+            </select>
+          </div>
+
+          <!-- Policy Box -->
+          <div style="background: var(--color-soft-sky); padding: 0.9rem 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--color-soft-border); text-align: right;">
+            <div style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--color-navy-muted);" data-i18n="monitoring.policy_label">
+              Active Monitoring Policy
+            </div>
+            <div id="active-policy-display" style="font-size: 0.95rem; font-weight: 700; color: var(--color-deep-blue); margin-top: 0.2rem;">
+              Policy B (Default Fair Election Standard)
+            </div>
+            <button type="button" class="btn btn-outline btn-sm" style="margin-top: 0.4rem;" onclick="toggleMonitoringPolicy()" data-i18n="monitoring.switch_policy">
+              Switch Policy Mode
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Monitoring Data Area -->
+      <div id="monitoring-data-container">
+        <!-- Rendered by live-monitoring.js -->
+        <div class="card skeleton" style="height: 320px;"></div>
+      </div>
+    </main>
+  </div>
+
+  <footer class="app-footer"></footer>
+
+  <script src="/js/i18n.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/common.js"></script>
+  <script src="/js/live-monitoring.js"></script>
+</body>
+</html>

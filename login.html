@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="auth.login_title">Sign In — SecureVote Prototype</title>
+  <meta name="description" content="Sign in to the SecureVote online voting simulation portal.">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+  <!-- Disclaimer -->
+  <div class="educational-banner">
+    <span class="badge" data-i18n="home.banner_badge">EDUCATIONAL DEMO</span>
+    <span data-i18n="brand.disclaimer">Educational election simulation prototype using fictional data. Strictly not for real government elections.</span>
+  </div>
+
+  <header class="app-header"></header>
+
+  <main class="main-content">
+    <div class="app-container" style="max-width: 520px;">
+      <div class="card" style="margin-top: 1.5rem;">
+        <div style="text-align: center; margin-bottom: 1.5rem;">
+          <h2 data-i18n="auth.login_title" style="margin-bottom: 0.5rem;">Sign In to SecureVote</h2>
+          <p data-i18n="auth.login_subtitle" style="font-size: 0.95rem;">Select voter or administrator access using your demo credentials.</p>
+          <div style="margin-top: 1rem; display: inline-flex; align-items: center; gap: 0.5rem; background: var(--color-soft-sky); padding: 0.25rem 0.6rem; border-radius: var(--radius-pill); border: 1px solid var(--color-soft-border);">
+            <span style="font-size: 0.78rem; font-weight: 600; color: var(--color-navy-muted);">🌐 Language:</span>
+            <button type="button" class="lang-btn" data-lang="en" onclick="changeLanguage('en')">English</button>
+            <button type="button" class="lang-btn" data-lang="ta" onclick="changeLanguage('ta')">தமிழ்</button>
+          </div>
+        </div>
+
+        <form id="login-form">
+          <div class="form-group">
+            <label class="form-label" for="login-identifier" data-i18n="auth.identifier_label">Email or Demo Voter ID</label>
+            <input type="text" id="login-identifier" class="form-control" required placeholder="admin@securevote.demo or DEMO-VOTER-101" data-i18n-placeholder="auth.identifier_placeholder">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="login-password" data-i18n="auth.password_label">Password</label>
+            <input type="password" id="login-password" class="form-control" required placeholder="Enter your password" data-i18n-placeholder="auth.password_placeholder">
+          </div>
+
+          <button type="submit" id="login-submit-btn" class="btn btn-primary btn-lg" style="width: 100%; margin-top: 0.5rem;" data-i18n="auth.login_button">
+            Sign In
+          </button>
+        </form>
+
+        <div style="text-align: center; margin-top: 1.5rem; font-size: 0.9rem;">
+          <span data-i18n="auth.register_prompt">Don't have a demo voter account?</span>
+          <a href="/register.html" style="font-weight: 600; margin-left: 0.25rem;" data-i18n="auth.register_link">Register Demo Voter</a>
+        </div>
+
+        <!-- Pre-Configured Demo Credentials for Testing -->
+        <div style="margin-top: 2rem; padding: 1.25rem; background: var(--color-soft-sky); border: 1px solid var(--color-soft-border); border-radius: var(--radius-md);">
+          <div style="font-weight: 700; font-size: 0.85rem; color: var(--color-navy-text); margin-bottom: 0.75rem; text-transform: uppercase;" data-i18n="auth.demo_accounts_title">
+            Pre-Configured Demo Credentials (One-Click Fill)
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.85rem;">
+            <button type="button" id="btn-fill-admin" class="btn btn-outline btn-sm" style="text-align: left; justify-content: space-between; background: #FFFFFF;" onclick="fillCredentials('admin@securevote.demo', 'AdminPassword@123')">
+              <span><strong>Admin:</strong> admin@securevote.demo (Full Management)</span>
+              <span class="badge badge-published">Fill Admin</span>
+            </button>
+
+            <button type="button" id="btn-fill-voter-eligible" class="btn btn-outline btn-sm" style="text-align: left; justify-content: space-between; background: #FFFFFF;" onclick="fillCredentials('priya@securevote.demo', 'VoterPassword@123')">
+              <span><strong>Voter (Eligible to Vote):</strong> priya@securevote.demo</span>
+              <span class="badge badge-open">Fill (Ready to Vote)</span>
+            </button>
+
+            <button type="button" id="btn-fill-voter-approved" class="btn btn-outline btn-sm" style="text-align: left; justify-content: space-between; background: #FFFFFF;" onclick="fillCredentials('aarav@securevote.demo', 'VoterPassword@123')">
+              <span><strong>Voter (Already Voted):</strong> aarav@securevote.demo</span>
+              <span class="badge badge-closed">Fill (Test Duplicate Block)</span>
+            </button>
+
+            <button type="button" id="btn-fill-voter-pending" class="btn btn-outline btn-sm" style="text-align: left; justify-content: space-between; background: #FFFFFF;" onclick="fillCredentials('meenakshi@securevote.demo', 'VoterPassword@123')">
+              <span><strong>Voter (Pending Review):</strong> meenakshi@securevote.demo</span>
+              <span class="badge badge-pending">Fill (Approval Flow)</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="app-footer"></footer>
+
+  <script src="/js/i18n.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/common.js"></script>
+  <script src="/js/auth.js"></script>
+</body>
+</html>

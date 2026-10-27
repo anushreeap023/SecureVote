@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="voters_mgmt.title">Voter Registration Management — SecureVote Prototype</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+  <div class="educational-banner">
+    <span class="badge" data-i18n="home.banner_badge">EDUCATIONAL DEMO</span>
+    <span data-i18n="brand.disclaimer">Educational election simulation prototype using fictional data. Strictly not for real government elections.</span>
+  </div>
+
+  <header class="app-header"></header>
+
+  <div class="dashboard-layout">
+    <aside class="dashboard-sidebar" id="admin-sidebar"></aside>
+
+    <main class="dashboard-main">
+      <div style="margin-bottom: 2rem;">
+        <h1 data-i18n="voters_mgmt.title">Voter Registration Management</h1>
+        <p data-i18n="voters_mgmt.subtitle" style="margin-bottom: 0;">
+          Review, approve, or decline demo voter accounts for upcoming elections.
+        </p>
+      </div>
+
+      <!-- Filter Tabs Bar -->
+      <div class="card" style="margin-bottom: 1.5rem; padding: 1rem 1.25rem;">
+        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+          <button type="button" class="btn btn-primary btn-sm" id="tab-all" onclick="filterVoters('all')">
+            <span data-i18n="voters_mgmt.all_tab">All Registrations</span> (<span id="count-total">0</span>)
+          </button>
+          <button type="button" class="btn btn-outline btn-sm" id="tab-pending" onclick="filterVoters('pending')">
+            ⏳ <span data-i18n="voters_mgmt.pending_tab">Pending Approvals</span> (<span id="count-pending">0</span>)
+          </button>
+          <button type="button" class="btn btn-outline btn-sm" id="tab-approved" onclick="filterVoters('approved')">
+            ✓ <span data-i18n="voters_mgmt.approved_tab">Approved Voters</span> (<span id="count-approved">0</span>)
+          </button>
+          <button type="button" class="btn btn-outline btn-sm" id="tab-rejected" onclick="filterVoters('rejected')">
+            ✕ <span data-i18n="voters_mgmt.declined_tab">Declined Voters</span> (<span id="count-rejected">0</span>)
+          </button>
+        </div>
+      </div>
+
+      <!-- Voters Table -->
+      <div class="card">
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th data-i18n="voters_mgmt.col_voter_id">Demo Voter ID</th>
+                <th data-i18n="voters_mgmt.col_name">Full Name</th>
+                <th data-i18n="voters_mgmt.col_contact">Contact Details</th>
+                <th data-i18n="voters_mgmt.col_lang">Language</th>
+                <th data-i18n="voters_mgmt.col_status">Status</th>
+                <th data-i18n="voters_mgmt.col_registered">Registered</th>
+                <th data-i18n="voters_mgmt.col_actions">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="voters-table-body">
+              <tr>
+                <td colspan="7" style="text-align: center; padding: 2rem;">Loading voter registrations...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <footer class="app-footer"></footer>
+
+  <script src="/js/i18n.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/common.js"></script>
+  <script src="/js/voter-management.js"></script>
+</body>
+</html>

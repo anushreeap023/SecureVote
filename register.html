@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="auth.register_title">Demo Voter Registration — SecureVote Prototype</title>
+  <meta name="description" content="Register a fictional demo voter for educational election testing.">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+  <!-- Disclaimer -->
+  <div class="educational-banner">
+    <span class="badge" data-i18n="home.banner_badge">EDUCATIONAL DEMO</span>
+    <span data-i18n="brand.disclaimer">Educational election simulation prototype using fictional data. Strictly not for real government elections.</span>
+  </div>
+
+  <header class="app-header"></header>
+
+  <main class="main-content">
+    <div class="app-container" style="max-width: 620px;">
+      <div class="card" style="margin-top: 1.5rem;">
+        <div style="text-align: center; margin-bottom: 2rem;">
+          <h2 data-i18n="auth.register_title" style="margin-bottom: 0.5rem;">Demo Voter Registration</h2>
+          <p data-i18n="auth.register_subtitle" style="font-size: 0.95rem;">Register a fictional voter profile for educational election testing.</p>
+        </div>
+
+        <form id="register-form">
+          <div class="form-group">
+            <label class="form-label" for="reg-name" data-i18n="auth.full_name_label">Full Name</label>
+            <input type="text" id="reg-name" class="form-control" required placeholder="e.g. Aarav Sharma" data-i18n-placeholder="auth.full_name_placeholder">
+          </div>
+
+          <div class="form-group">
+            <div style="display: flex; justify-content: space-between;">
+              <label class="form-label" for="reg-voter-id" data-i18n="auth.voter_id_label">Demo Voter ID</label>
+              <button type="button" class="btn btn-outline btn-sm" style="padding: 0.2rem 0.5rem; font-size: 0.75rem;" onclick="generateDemoVoterId()">Generate Random</button>
+            </div>
+            <input type="text" id="reg-voter-id" class="form-control" required placeholder="DEMO-VOTER-201" data-i18n-placeholder="auth.voter_id_placeholder">
+            <div class="form-help" data-i18n="auth.voter_id_help">Unique fictional identification code (format: DEMO-VOTER-XXX)</div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label" for="reg-email" data-i18n="auth.email_label">Email Address</label>
+              <input type="email" id="reg-email" class="form-control" required placeholder="voter@securevote.demo" data-i18n-placeholder="auth.email_placeholder">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="reg-mobile" data-i18n="auth.mobile_label">Mobile Number</label>
+              <input type="tel" id="reg-mobile" class="form-control" required placeholder="+91 98765 00000" data-i18n-placeholder="auth.mobile_placeholder">
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label" for="reg-password" data-i18n="auth.password_label">Password</label>
+              <input type="password" id="reg-password" class="form-control" required minlength="8" placeholder="At least 8 chars" data-i18n-placeholder="auth.password_placeholder">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="reg-confirm-password" data-i18n="auth.confirm_password_label">Confirm Password</label>
+              <input type="password" id="reg-confirm-password" class="form-control" required minlength="8" placeholder="Re-enter password" data-i18n-placeholder="auth.confirm_password_placeholder">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="reg-lang" data-i18n="auth.preferred_lang_label">Preferred Language</label>
+            <select id="reg-lang" class="form-control">
+              <option value="en">English</option>
+              <option value="ta">தமிழ் (Tamil)</option>
+            </select>
+          </div>
+
+          <div class="form-group" style="margin-top: 1rem;">
+            <label style="display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.88rem; color: var(--color-navy-text); cursor: pointer;">
+              <input type="checkbox" id="reg-terms" required style="margin-top: 0.2rem;">
+              <span data-i18n="auth.terms_label">I acknowledge this is strictly an educational election prototype with simulated data.</span>
+            </label>
+          </div>
+
+          <button type="submit" id="reg-submit-btn" class="btn btn-primary btn-lg" style="width: 100%; margin-top: 0.5rem;" data-i18n="auth.register_button">
+            Submit Registration
+          </button>
+        </form>
+
+        <div style="text-align: center; margin-top: 1.5rem; font-size: 0.9rem;">
+          <span data-i18n="auth.login_prompt">Already registered?</span>
+          <a href="/login.html" style="font-weight: 600; margin-left: 0.25rem;" data-i18n="auth.login_link">Sign In here</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Simulated Demo OTP Modal -->
+  <div id="demo-otp-modal" class="modal-overlay">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title" data-i18n="auth.otp_title">Demo OTP Verification</h3>
+        <button type="button" class="modal-close" onclick="closeOtpModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="text-align: center; margin-bottom: 1.5rem;">
+          <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">📲</div>
+          <p data-i18n="auth.otp_desc">Simulated verification code has been generated for demo testing.</p>
+          <div style="background: var(--color-soft-sky); padding: 0.75rem; border-radius: var(--radius-md); font-family: monospace; font-size: 1.4rem; font-weight: 700; color: var(--color-deep-blue); letter-spacing: 4px; display: inline-block;">
+            123456
+          </div>
+          <div style="font-size: 0.78rem; color: var(--color-navy-muted); margin-top: 0.4rem;" data-i18n="auth.otp_simulated_badge">
+            Simulated Demo OTP (Always: 123456)
+          </div>
+        </div>
+
+        <form id="otp-form">
+          <div class="form-group">
+            <label class="form-label" for="otp-input" data-i18n="auth.otp_code_label">Demo Verification Code</label>
+            <input type="text" id="otp-input" class="form-control" style="text-align: center; font-size: 1.25rem; letter-spacing: 4px;" maxlength="6" required placeholder="123456">
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;" data-i18n="auth.otp_verify_btn">
+            Verify & Complete
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer class="app-footer"></footer>
+
+  <script src="/js/i18n.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/common.js"></script>
+  <script src="/js/auth.js"></script>
+</body>
+</html>

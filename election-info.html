@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="nav.elections">Election Information — SecureVote Prototype</title>
+  <meta name="description" content="View election schedules, candidate manifestos, and voting instructions.">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+  <!-- Disclaimer -->
+  <div class="educational-banner">
+    <span class="badge" data-i18n="home.banner_badge">EDUCATIONAL DEMO</span>
+    <span data-i18n="brand.disclaimer">Educational election simulation prototype using fictional data. Strictly not for real government elections.</span>
+  </div>
+
+  <header class="app-header"></header>
+
+  <main class="main-content">
+    <div class="app-container">
+      <div style="margin-bottom: 2rem;">
+        <h1 data-i18n="election_info.page_title" style="margin-bottom: 0.5rem;">Elections & Schedules</h1>
+        <p data-i18n="election_info.page_subtitle" style="color: var(--color-navy-muted);">Review simulated election timelines, candidate manifestos, and democratic participation criteria.</p>
+      </div>
+
+      <!-- Election Selector Bar -->
+      <div class="card" style="margin-bottom: 2rem; padding: 1.25rem;">
+        <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+          <label for="election-picker" data-i18n="election_info.select_election" style="font-weight: 600; color: var(--color-navy-text);">Select Election:</label>
+          <select id="election-picker" class="form-control" style="max-width: 480px;">
+            <option value="" data-i18n="election_info.loading_elections">Loading elections...</option>
+          </select>
+          <div id="selected-election-status-badge"></div>
+        </div>
+      </div>
+
+      <!-- Election Details Card -->
+      <div id="election-detail-container">
+        <!-- Rendered by election-info.js -->
+        <div class="card skeleton" style="height: 300px;"></div>
+      </div>
+
+      <!-- Candidate Roster Section -->
+      <div style="margin-top: 3rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+          <div>
+            <h2 data-i18n="election_info.candidates_title">Nominated Candidates</h2>
+            <p data-i18n="election_info.candidates_subtitle" style="margin-bottom: 0;">Explore candidate profiles, fictional symbols, and political platforms.</p>
+          </div>
+        </div>
+
+        <div id="candidates-container" class="candidate-grid">
+          <!-- Populated by election-info.js -->
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Full Manifesto Modal -->
+  <div id="manifesto-modal" class="modal-overlay">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-candidate-name">Candidate Manifesto</h3>
+        <button type="button" class="modal-close" onclick="closeManifestoModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem;">
+          <div id="modal-candidate-symbol" style="width: 56px; height: 56px; border-radius: 50%; background: var(--color-light-blue); display: flex; align-items: center; justify-content: center; font-size: 1.75rem;">
+            📖
+          </div>
+          <div>
+            <h4 id="modal-candidate-party" style="color: var(--color-deep-blue); margin-bottom: 0.2rem;">Party Name</h4>
+            <div id="modal-candidate-status" class="badge badge-open">Active</div>
+          </div>
+        </div>
+        <div style="font-size: 0.95rem; line-height: 1.7; color: var(--color-navy-text);" id="modal-candidate-manifesto">
+          Full manifesto text...
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onclick="closeManifestoModal()" data-i18n="ballot.close">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="app-footer"></footer>
+
+  <script src="/js/i18n.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/common.js"></script>
+  <script src="/js/election-info.js"></script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="brand.name">SecureVote — Secure Online Voting Prototype</title>
+  <meta name="description" content="Secure, bilingual online voting simulation prototype with cryptographic SHA-256 audit logs, duplicate-voting prevention, and administrative oversight.">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+  <!-- Educational Disclaimer Top Bar -->
+  <div class="educational-banner">
+    <span class="badge" data-i18n="home.banner_badge">EDUCATIONAL DEMO</span>
+    <span data-i18n="brand.disclaimer">Educational election simulation prototype using fictional data. Strictly not for real government elections.</span>
+  </div>
+
+  <!-- Navigation Bar -->
+  <header class="app-header"></header>
+
+  <!-- Hero Section -->
+  <main class="main-content">
+    <div class="app-container">
+      <section style="background: linear-gradient(135deg, #FFFFFF 0%, #EAF7FF 100%); border: 1px solid var(--color-soft-border); border-radius: var(--radius-xl); padding: 3.5rem 2.5rem; margin-bottom: 2.5rem; box-shadow: var(--shadow-sm); text-align: center;">
+        <span class="badge badge-published" style="margin-bottom: 1rem; font-size: 0.85rem;" data-i18n="home.banner_badge">
+          EDUCATIONAL PROTOTYPE • FICTIONAL DATA ONLY
+        </span>
+        <h1 style="max-width: 820px; margin: 0 auto 1.25rem; font-size: 2.6rem; letter-spacing: -0.5px;" data-i18n="home.hero_title">
+          Transparent, Tamper-Evident Election Simulation
+        </h1>
+        <p style="max-width: 700px; margin: 0 auto 2rem; font-size: 1.1rem; line-height: 1.7;" data-i18n="home.hero_subtitle">
+          Experience modern democratic participation built with cryptographic audit chaining, ballot anonymity protection, and real-time administrative oversight.
+        </p>
+
+        <div class="hero-actions" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="/login.html" class="btn btn-primary btn-lg" data-i18n="home.cta_vote">Access Voter Portal</a>
+          <a href="/login.html?role=admin" class="btn btn-secondary btn-lg" data-i18n="home.cta_admin">Admin Demonstration</a>
+          <a href="/register.html" class="btn btn-outline btn-lg" data-i18n="home.cta_register">Register Demo Voter</a>
+        </div>
+      </section>
+
+      <!-- How It Works Section -->
+      <section style="margin-bottom: 3.5rem;">
+        <div style="text-align: center; margin-bottom: 2rem;">
+          <h2 data-i18n="home.how_it_works_title">How the Simulation Works</h2>
+          <p style="color: var(--color-navy-muted);">Four intuitive steps ensuring verified eligibility and cryptographic integrity.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem;">
+          <div class="card" style="border-top: 4px solid var(--color-primary-blue);">
+            <div style="font-size: 2.2rem; margin-bottom: 0.75rem;">📝</div>
+            <h3 style="margin-bottom: 0.5rem;" data-i18n="home.step1_title">1. Demo Registration</h3>
+            <p data-i18n="home.step1_desc">Register with a fictional Demo Voter ID and receive a simulated demo OTP code.</p>
+          </div>
+
+          <div class="card" style="border-top: 4px solid var(--color-deep-blue);">
+            <div style="font-size: 2.2rem; margin-bottom: 0.75rem;">🛡️</div>
+            <h3 style="margin-bottom: 0.5rem;" data-i18n="home.step2_title">2. Administrative Review</h3>
+            <p data-i18n="home.step2_desc">Election administrators verify and approve your simulated voter credentials.</p>
+          </div>
+
+          <div class="card" style="border-top: 4px solid var(--color-success);">
+            <div style="font-size: 2.2rem; margin-bottom: 0.75rem;">🗳️</div>
+            <h3 style="margin-bottom: 0.5rem;" data-i18n="home.step3_title">3. Cast Verified Ballot</h3>
+            <p data-i18n="home.step3_desc">Review candidate manifestos, make your choice, and confirm with database transaction locks.</p>
+          </div>
+
+          <div class="card" style="border-top: 4px solid var(--color-warning);">
+            <div style="font-size: 2.2rem; margin-bottom: 0.75rem;">⛓️</div>
+            <h3 style="margin-bottom: 0.5rem;" data-i18n="home.step4_title">4. Verify Audit Integrity</h3>
+            <p data-i18n="home.step4_desc">Verify cryptographic hash chain integrity and view published election certificates.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Core Features Grid -->
+      <section style="margin-bottom: 3.5rem;">
+        <div style="text-align: center; margin-bottom: 2rem;">
+          <h2 data-i18n="home.features_title">Core System Capabilities</h2>
+          <p data-i18n="home.features_subtitle">Designed with rigorous cybersecurity principles for educational demonstration.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+          <div class="card">
+            <h3 style="margin-bottom: 0.6rem; color: var(--color-deep-blue);" data-i18n="home.feat_audit_title">Tamper-Evident SHA-256 Audit Chain</h3>
+            <p data-i18n="home.feat_audit_desc">Every administrative action, election transition, and ballot issuance is cryptographically linked in an immutable audit chain.</p>
+          </div>
+          <div class="card">
+            <h3 style="margin-bottom: 0.6rem; color: var(--color-deep-blue);" data-i18n="home.feat_ballot_title">Voter Participation & Ballot Separation</h3>
+            <p data-i18n="home.feat_ballot_desc">Voter records and cast ballots are stored in decoupled tables with unique transaction guarantees to prevent duplicate voting while avoiding direct database voter-choice linkage.</p>
+          </div>
+          <div class="card">
+            <h3 style="margin-bottom: 0.6rem; color: var(--color-deep-blue);" data-i18n="home.feat_monitoring_title">Policy-Governed Live Monitoring</h3>
+            <p data-i18n="home.feat_monitoring_desc">Live candidate counts remain strictly confidential under standard election policy (Policy B), showing turnout metrics until official closing.</p>
+          </div>
+          <div class="card">
+            <h3 style="margin-bottom: 0.6rem; color: var(--color-deep-blue);" data-i18n="home.feat_bilingual_title">Complete Bilingual Interface</h3>
+            <p data-i18n="home.feat_bilingual_desc">Native Tamil (தமிழ்) and English support with locale-aware calendar formatting and accessible typography.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Active Elections Section -->
+      <section style="margin-bottom: 3.5rem;">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <h2 data-i18n="home.active_elections_title">Featured Simulation Elections</h2>
+            <p style="margin-bottom: 0;">Explore current and upcoming educational elections.</p>
+          </div>
+          <a href="/election-info.html" class="btn btn-outline" data-i18n="home.view_all_elections">View All Elections &rarr;</a>
+        </div>
+
+        <div id="elections-list-container" class="candidate-grid">
+          <!-- Populated by home.js -->
+          <div class="card skeleton" style="height: 180px;"></div>
+          <div class="card skeleton" style="height: 180px;"></div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="app-footer"></footer>
+
+  <!-- Scripts -->
+  <script src="/js/i18n.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/common.js"></script>
+  <script src="/js/home.js"></script>
+</body>
+</html>

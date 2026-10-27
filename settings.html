@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="settings.title">System Settings — SecureVote Prototype</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+  <div class="educational-banner">
+    <span class="badge" data-i18n="home.banner_badge">EDUCATIONAL DEMO</span>
+    <span data-i18n="brand.disclaimer">Educational election simulation prototype using fictional data. Strictly not for real government elections.</span>
+  </div>
+
+  <header class="app-header"></header>
+
+  <div class="dashboard-layout">
+    <aside class="dashboard-sidebar" id="admin-sidebar"></aside>
+
+    <main class="dashboard-main">
+      <div style="margin-bottom: 2rem;">
+        <h1 data-i18n="settings.title">Simulation System Settings</h1>
+        <p data-i18n="settings.subtitle" style="color: var(--color-navy-muted); margin-bottom: 0;">
+          Configure educational simulation parameters, voting policies, and demo verification workflows.
+        </p>
+      </div>
+
+      <div class="card" style="max-width: 780px;">
+        <form id="settings-form">
+          <!-- Monitoring Policy -->
+          <div style="padding-bottom: 1.5rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--color-soft-border);">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem;">
+              <div>
+                <label class="form-label" style="font-size: 1.05rem;" data-i18n="settings.monitoring_policy_title">
+                  Live Monitoring Policy
+                </label>
+                <p style="font-size: 0.88rem; color: var(--color-navy-muted); line-height: 1.5;" data-i18n="settings.monitoring_policy_desc">
+                  Toggle whether administrators can inspect live candidate totals while an election is OPEN.
+                </p>
+              </div>
+              <select id="setting-monitoring-policy" class="form-control" style="max-width: 280px;">
+                <option value="POLICY_B">Policy B (Turnout Only during Voting - Default)</option>
+                <option value="POLICY_A">Policy A (Live Candidate Counts - Simulation Mode)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Require Voter Approval -->
+          <div style="padding-bottom: 1.5rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--color-soft-border);">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem;">
+              <div>
+                <label class="form-label" style="font-size: 1.05rem;" data-i18n="settings.require_approval_title">
+                  Require Voter Approval
+                </label>
+                <p style="font-size: 0.88rem; color: var(--color-navy-muted); line-height: 1.5;" data-i18n="settings.require_approval_desc">
+                  If enabled, newly registered demo voters must be approved by an administrator before voting.
+                </p>
+              </div>
+              <select id="setting-voter-approval" class="form-control" style="max-width: 140px;">
+                <option value="true">Enabled</option>
+                <option value="false">Disabled</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Simulated Demo OTP -->
+          <div style="padding-bottom: 1.5rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--color-soft-border);">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem;">
+              <div>
+                <label class="form-label" style="font-size: 1.05rem;" data-i18n="settings.demo_otp_title">
+                  Simulated Demo OTP Verification
+                </label>
+                <p style="font-size: 0.88rem; color: var(--color-navy-muted); line-height: 1.5;" data-i18n="settings.demo_otp_desc">
+                  If enabled, voters must complete simulated demo OTP verification upon registration.
+                </p>
+              </div>
+              <select id="setting-demo-otp" class="form-control" style="max-width: 140px;">
+                <option value="true">Enabled</option>
+                <option value="false">Disabled</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: flex-end;">
+            <button type="submit" id="save-settings-btn" class="btn btn-primary btn-lg" data-i18n="settings.save_settings">
+              Save Settings
+            </button>
+          </div>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <footer class="app-footer"></footer>
+
+  <script src="/js/i18n.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/common.js"></script>
+  <script src="/js/settings.js"></script>
+</body>
+</html>

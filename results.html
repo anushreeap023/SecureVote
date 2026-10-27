@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="results.title">Certified Results — SecureVote Prototype</title>
+  <meta name="description" content="Official certified simulation election results and turnout metrics.">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+  <!-- Disclaimer -->
+  <div class="educational-banner">
+    <span class="badge" data-i18n="home.banner_badge">EDUCATIONAL DEMO</span>
+    <span data-i18n="brand.disclaimer">Educational election simulation prototype using fictional data. Strictly not for real government elections.</span>
+  </div>
+
+  <header class="app-header"></header>
+
+  <main class="main-content">
+    <div class="app-container" style="max-width: 980px;">
+      <div style="margin-bottom: 2rem;">
+        <h1 data-i18n="results.title" style="margin-bottom: 0.5rem;">Certified Election Results</h1>
+        <p data-i18n="results.subtitle" style="color: var(--color-navy-muted);">
+          Official tally and statistical breakdown for concluded simulation elections.
+        </p>
+      </div>
+
+      <!-- Election Selector Bar -->
+      <div class="card" style="margin-bottom: 2rem; padding: 1.25rem;">
+        <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+          <label for="results-election-picker" style="font-weight: 600; color: var(--color-navy-text);" data-i18n="results.select_election">
+            Select Concluded Election:
+          </label>
+          <select id="results-election-picker" class="form-control" style="max-width: 480px;">
+            <option value="">Loading elections...</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Main Results Display Area -->
+      <div id="results-content-container">
+        <!-- Rendered by results.js -->
+        <div class="card skeleton" style="height: 350px;"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="app-footer"></footer>
+
+  <script src="/js/i18n.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/common.js"></script>
+  <script src="/js/results.js"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+{
+  "name": "securevote",
+  "version": "1.0.0",
+  "description": "SecureVote — Secure Online Voting Prototype (Educational Simulation)",
+  "main": "src/server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "db:setup": "node database/setup-db.js",
+    "test": "node tests/run-all.js"
+  },
+  "keywords": [
+    "voting",
+    "election-simulation",
+    "educational",
+    "audit-log",
+    "tamper-evident",
+    "bilingual",
+    "tamil",
+    "english"
+  ],
+  "author": "SecureVote Team",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "express-session": "^1.18.1",
+    "helmet": "^8.0.0",
+    "mysql2": "^3.12.0"
+  },
+  "devDependencies": {
+    "supertest": "^7.0.0"
+  }
+}

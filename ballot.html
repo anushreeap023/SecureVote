@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="ballot.title">Cast Your Ballot — SecureVote Prototype</title>
+  <meta name="description" content="Cast your secure anonymous ballot in the simulation election.">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+  <!-- Disclaimer -->
+  <div class="educational-banner">
+    <span class="badge" data-i18n="home.banner_badge">EDUCATIONAL DEMO</span>
+    <span data-i18n="brand.disclaimer">Educational election simulation prototype using fictional data. Strictly not for real government elections.</span>
+  </div>
+
+  <header class="app-header"></header>
+
+  <main class="main-content">
+    <div class="app-container" style="max-width: 980px;">
+      <!-- Election Ballot Header Card -->
+      <div class="card" style="margin-bottom: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.4rem;">
+              <span class="badge badge-open" data-i18n="election_status.OPEN">VOTING OPEN</span>
+              <span id="ballot-election-id-badge" style="font-size: 0.8rem; color: var(--color-navy-muted);"></span>
+            </div>
+            <h1 id="ballot-election-title" style="font-size: 1.85rem; color: var(--color-navy-text); margin-bottom: 0.4rem;">
+              Official Simulation Ballot
+            </h1>
+            <p id="ballot-instructions" style="font-size: 0.95rem; color: var(--color-navy-muted);" data-i18n="ballot.instructions">
+              Click on a candidate card to select. Then click 'Review Selection' to confirm your choice before submission.
+            </p>
+          </div>
+
+          <a href="/voter-dashboard.html" class="btn btn-outline btn-sm" data-i18n="ballot.return_dashboard">Return to Dashboard</a>
+        </div>
+      </div>
+
+      <!-- Candidate Selection Grid -->
+      <div id="ballot-candidates-grid" class="candidate-grid">
+        <div class="card skeleton" style="height: 260px;"></div>
+        <div class="card skeleton" style="height: 260px;"></div>
+      </div>
+
+      <!-- Action Footer Bar -->
+      <div class="ballot-action-bar">
+        <div>
+          <span style="font-size: 0.85rem; color: var(--color-navy-muted);">Selected Candidate:</span>
+          <div id="selected-candidate-preview" style="font-size: 1.1rem; font-weight: 700; color: var(--color-deep-blue);">
+            None Selected
+          </div>
+        </div>
+
+        <button type="button" id="review-selection-btn" class="btn btn-primary btn-lg" disabled onclick="handleReviewSelection()" data-i18n="ballot.review_btn">
+          Review My Selection
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Review Selection Modal -->
+  <div id="review-modal" class="modal-overlay">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title" data-i18n="ballot.review_modal_title">Review Your Ballot Selection</h3>
+        <button type="button" class="modal-close" onclick="closeReviewModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="background: var(--color-warning-bg); border: 1px solid var(--color-warning-border); padding: 1rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; font-size: 0.88rem; color: #8A5D00; line-height: 1.5;" data-i18n="ballot.review_warning">
+          Important: Once submitted, your vote is irreversibly recorded in a secure database transaction. Duplicate voting is mathematically prohibited.
+        </div>
+
+        <div style="text-align: center; margin-bottom: 1.5rem;">
+          <div id="review-symbol" style="width: 72px; height: 72px; border-radius: 50%; background: var(--color-light-blue); margin: 0 auto 0.75rem; display: flex; align-items: center; justify-content: center; font-size: 2.2rem;">
+            🗳️
+          </div>
+          <h2 id="review-candidate-name" style="font-size: 1.4rem; color: var(--color-navy-text); margin-bottom: 0.25rem;">Candidate Name</h2>
+          <div id="review-candidate-party" style="font-size: 0.95rem; font-weight: 600; color: var(--color-deep-blue);">Party Name</div>
+        </div>
+
+        <div style="font-size: 0.85rem; color: var(--color-navy-muted); text-align: center;">
+          This ballot will be sealed into the decoupled ballot registry with a random confirmation reference.
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline" onclick="closeReviewModal()" data-i18n="common.cancel">Cancel</button>
+        <button type="button" id="confirm-vote-submit-btn" class="btn btn-primary btn-lg" onclick="executeVoteSubmission()" data-i18n="ballot.confirm_submit_btn">
+          Confirm & Submit Vote
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vote Success Modal -->
+  <div id="vote-success-modal" class="modal-overlay">
+    <div class="modal-dialog" style="text-align: center; padding: 1rem;">
+      <div class="modal-body">
+        <div style="font-size: 3.5rem; margin-bottom: 0.5rem;">🎉</div>
+        <h2 style="color: var(--color-success); margin-bottom: 0.5rem;" data-i18n="ballot.vote_success_title">Ballot Successfully Cast!</h2>
+        <p data-i18n="ballot.vote_success_msg" style="font-size: 0.95rem;">Your vote has been verified and permanently committed to the election ballot registry.</p>
+
+        <div style="background: var(--color-soft-sky); border: 1px solid var(--color-soft-border); border-radius: var(--radius-md); padding: 1.25rem; margin: 1.5rem 0;">
+          <div style="font-size: 0.78rem; text-transform: uppercase; font-weight: 700; color: var(--color-navy-muted); margin-bottom: 0.35rem;" data-i18n="ballot.receipt_code">
+            Anonymous Ballot Reference
+          </div>
+          <div id="success-ballot-ref" style="font-family: monospace; font-size: 1.15rem; font-weight: 700; color: var(--color-deep-blue); letter-spacing: 1px; word-break: break-all;">
+            BAL-EXXX-XXX
+          </div>
+          <div style="font-size: 0.78rem; color: var(--color-navy-muted); margin-top: 0.5rem;" data-i18n="ballot.receipt_notice">
+            This reference confirms your participation while keeping your candidate choice mathematically anonymous. Keep for your records.
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 1rem; justify-content: center;">
+          <a href="/voter-dashboard.html" class="btn btn-primary" data-i18n="ballot.return_dashboard">Return to Dashboard</a>
+          <a href="/voting-status.html" class="btn btn-outline" data-i18n="nav.voting_status">Check Voting Status</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Manifesto Modal -->
+  <div id="manifesto-modal" class="modal-overlay">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title" id="manifesto-candidate-name">Manifesto</h3>
+        <button type="button" class="modal-close" onclick="closeManifestoModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p id="manifesto-full-text" style="font-size: 0.95rem; line-height: 1.7; color: var(--color-navy-text);"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline" onclick="closeManifestoModal()" data-i18n="ballot.close">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="app-footer"></footer>
+
+  <script src="/js/i18n.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/common.js"></script>
+  <script src="/js/ballot.js"></script>
+</body>
+</html>

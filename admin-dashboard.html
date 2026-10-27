@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="admin.dashboard_title">Admin Overview — SecureVote Prototype</title>
+  <meta name="description" content="Chief Election Administrator dashboard and governance center.">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+  <div class="educational-banner">
+    <span class="badge" data-i18n="home.banner_badge">EDUCATIONAL DEMO</span>
+    <span data-i18n="brand.disclaimer">Educational election simulation prototype using fictional data. Strictly not for real government elections.</span>
+  </div>
+
+  <header class="app-header"></header>
+
+  <div class="dashboard-layout">
+    <!-- Sidebar -->
+    <aside class="dashboard-sidebar" id="admin-sidebar"></aside>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <h1 data-i18n="admin.dashboard_title">Chief Election Administrator Overview</h1>
+          <p data-i18n="admin.dashboard_subtitle" style="margin-bottom: 0;">
+            System health, live oversight, voter management, and audit integrity controls.
+          </p>
+        </div>
+
+        <div style="display: flex; gap: 0.75rem;">
+          <a href="/live-monitoring.html" class="btn btn-primary btn-sm">
+            📡 <span data-i18n="admin.action_monitoring">Live Monitoring</span>
+          </a>
+          <button type="button" class="btn btn-outline btn-sm" onclick="runAuditVerification()">
+            ⛓️ <span data-i18n="admin.action_verify_audit">Verify Audit Chain</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Metrics Grid -->
+      <div class="stats-grid" id="admin-stats-grid">
+        <div class="stat-card skeleton" style="height: 100px;"></div>
+        <div class="stat-card skeleton" style="height: 100px;"></div>
+        <div class="stat-card skeleton" style="height: 100px;"></div>
+        <div class="stat-card skeleton" style="height: 100px;"></div>
+      </div>
+
+      <!-- Quick Action Tiles -->
+      <div class="card" style="margin-bottom: 2rem;">
+        <h3 style="margin-bottom: 1rem; color: var(--color-navy-text);" data-i18n="admin.quick_actions">
+          Quick Administrative Actions
+        </h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+          <a href="/elections-management.html?action=create" class="btn btn-outline" style="padding: 1rem; text-align: left; justify-content: flex-start; gap: 0.75rem;">
+            <span style="font-size: 1.4rem;">➕</span>
+            <div>
+              <div style="font-weight: 700; color: var(--color-navy-text);" data-i18n="admin.action_create_election">Create Election</div>
+              <div style="font-size: 0.75rem; color: var(--color-navy-muted);">New simulation schedule</div>
+            </div>
+          </a>
+
+          <a href="/voter-management.html" class="btn btn-outline" style="padding: 1rem; text-align: left; justify-content: flex-start; gap: 0.75rem;">
+            <span style="font-size: 1.4rem;">📋</span>
+            <div>
+              <div style="font-weight: 700; color: var(--color-navy-text);" data-i18n="admin.action_voters">Review Voters</div>
+              <div style="font-size: 0.75rem; color: var(--color-navy-muted);">Pending approvals</div>
+            </div>
+          </a>
+
+          <a href="/results-management.html" class="btn btn-outline" style="padding: 1rem; text-align: left; justify-content: flex-start; gap: 0.75rem;">
+            <span style="font-size: 1.4rem;">🏆</span>
+            <div>
+              <div style="font-weight: 700; color: var(--color-navy-text);" data-i18n="admin.action_publish">Publish Results</div>
+              <div style="font-size: 0.75rem; color: var(--color-navy-muted);">Certify closed elections</div>
+            </div>
+          </a>
+
+          <a href="/live-monitoring.html" class="btn btn-outline" style="padding: 1rem; text-align: left; justify-content: flex-start; gap: 0.75rem;">
+            <span style="font-size: 1.4rem;">📊</span>
+            <div>
+              <div style="font-weight: 700; color: var(--color-navy-text);" data-i18n="admin.action_monitoring">Live Turnout</div>
+              <div style="font-size: 0.75rem; color: var(--color-navy-muted);">Policy B oversight</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Two-Column Feed: Recent Audit Chain & Security Alerts -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 1.5rem;">
+        <!-- Recent Audit Events -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title" data-i18n="admin.recent_audit">Recent Audit Chain Records</h3>
+            <a href="/audit-logs.html" class="btn btn-outline btn-sm" data-i18n="admin.view_all">View All</a>
+          </div>
+          <div id="recent-audit-container">
+            <!-- Populated by admin-dashboard.js -->
+          </div>
+        </div>
+
+        <!-- Recent Security Alerts -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title" data-i18n="admin.recent_security">Recent Security Alerts</h3>
+            <a href="/security-events.html" class="btn btn-outline btn-sm" data-i18n="admin.view_all">View All</a>
+          </div>
+          <div id="recent-security-container">
+            <!-- Populated by admin-dashboard.js -->
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <footer class="app-footer"></footer>
+
+  <script src="/js/i18n.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/common.js"></script>
+  <script src="/js/admin-dashboard.js"></script>
+</body>
+</html>
